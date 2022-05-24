@@ -67,9 +67,6 @@ silent! exec "!g++ % -o %<\n"
 exec "! ./%<"
 endfunc
 
-" <F5> 运行python程序
-autocmd BufRead,BufNewFile *.py noremap <F5> :w<cr>:!python %<cr>
-
 " <F5> 运行shell程序
 autocmd BufRead,BufNewFile *.sh noremap <F5> :call CompileRunSH()<CR>
 func! CompileRunSH()
@@ -87,13 +84,9 @@ silent! exec "!gcc % -o %< -gstabs+"
 exec "!gdb %<"
 endfunc
 
-autocmd BufRead,BufNewFile *.js noremap <F5> :w !ls&&node<Enter>
-if executable("go")
-    autocmd BufRead,BufNewFile *.go noremap <F5> :% w !go run<Enter>
-    "读取或创建.go文件时，将f5映射为执行go run 命令
-else
-    autocmd BufRead,BufNewFile *.go noremap <F5> :echo "you need to install go first!"
-endif
+autocmd BufRead,BufNewFile *.go noremap <F5> :w<CR>:!go run %<CR>
+autocmd BufRead,BufNewFile *.py noremap <F5> :w<CR>:!python %<CR>
+autocmd BufRead,BufNewFile *.js noremap <F5> :w<CR>:!node %<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'ap/vim-css-color'
