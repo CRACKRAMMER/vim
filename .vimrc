@@ -8,7 +8,7 @@ set clipboard=unnamed "用系统粘贴板替换vim暂存器
 set cursorline "光标所在行添加下划线
 set scrolloff=5 "滚动时预留5行
 set noswapfile "不会产生swap临时文件
-set fileencodings=utf-8,gbk
+set fileencodings=utf-8
 
 " search
 set hlsearch "高亮搜索结果
@@ -49,6 +49,43 @@ map <DOWN> <Nop>
 autocmd WinEnter * setlocal cursorline "进入窗口，添加下划线
 autocmd WinLeave * setlocal nocursorline "离开窗口，取消下划线
 autocmd BufWritePre * :%s/\s\+$//e "清除行尾空白字符
+
+" <F5> 编译和运行C
+autocmd BufRead,BufNewFile *.c noremap <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+exec "w"
+silent! exec "!gcc % -o %<"
+exec "! ./%<"
+endfunc
+
+"< F5> 编译和运行C++
+autocmd BufRead,BufNewFile *.cpp noremap <F5> :call CompileRunGpp()<CR>
+func! CompileRunGpp()
+exec "w"
+silent! exec "!g++ % -o %<\n"
+exec "! ./%<"
+endfunc
+
+" <F5> 运行python程序
+autocmd BufRead,BufNewFile *.py noremap <F5> :w<cr>:!python %<cr>
+
+" <F5> 运行shell程序
+autocmd BufRead,BufNewFile *.sh noremap <F5> :call CompileRunSH()<CR>
+func! CompileRunSH()
+exec "w"
+silent! exec "!chmod a+x %"
+exec "!./%"
+endfunc
+
+"<F9>  gdb调试
+autocmd BufRead,BufNewFile *.c noremap <F9> :call Debug()<CR>
+autocmd BufRead,BufNewFile *.cpp noremap <F9> :call Debug()<CR>
+func!  Debug()
+exec "w"
+silent! exec "!gcc % -o %< -gstabs+"
+exec "!gdb %<"
+endfunc
+
 autocmd BufRead,BufNewFile *.js noremap <F5> :w !ls&&node<Enter>
 if executable("go")
     autocmd BufRead,BufNewFile *.go noremap <F5> :% w !go run<Enter>
