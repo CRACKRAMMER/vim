@@ -58,14 +58,16 @@ else
 endif
 
 call plug#begin('~/.vim/plugged')
-
 Plug 'ap/vim-css-color'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'preservim/nerdtree'
-
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rails'
+Plug 'tomtom/tcomment_vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
-
+Plug 'vim-syntastic/syntastic'
+Plug 'ycm-core/YouCompleteMe'
 call plug#end()
