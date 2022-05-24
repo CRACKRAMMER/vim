@@ -8,7 +8,9 @@ set clipboard=unnamed "用系统粘贴板替换vim暂存器
 set cursorline "光标所在行添加下划线
 set scrolloff=5 "滚动时预留5行
 set noswapfile "不会产生swap临时文件
-set fileencodings=utf-8
+set fileencodings=utf-8,gb2312,gbk,gb18030
+set termencoding=utf-8
+set encoding=utf-8
 
 " search
 set hlsearch "高亮搜索结果
@@ -26,7 +28,6 @@ set showtabline=2 "永远显示tab标签
 set splitbelow "水平分割时新文档在下
 set splitright "垂直分割时新文档在右
 
-" color
 syntax on
 " try
 "     colorscheme darkblue
